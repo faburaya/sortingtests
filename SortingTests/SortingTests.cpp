@@ -69,7 +69,7 @@ namespace sorting_tests
 
 		std::cout << ">>> Iterative merge sort for " << GetParam() << " numbers took " << duration_cast<milliseconds> (endTime - startTime).count() << " milliseconds." << std::endl;
 
-        // Toolchain STL implementation for std::sort for benchmark:
+        // Toolchain STL implementation for std::sort as benchmark:
 
 		GenerateValues(values);
 
