@@ -15,9 +15,7 @@
 int _tmain(int argc, _TCHAR* argv[])
 {
 	std::cout << "Running main() from SortingTests.cpp\n";
-
 	testing::InitGoogleTest(&argc, argv);
-
 	return RUN_ALL_TESTS();
 }
 
