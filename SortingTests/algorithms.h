@@ -93,16 +93,18 @@ namespace sorting_tests
 					--rightIter;
 			}
 			while(leftIter != rightIter);
-			/*
-			std::for_each(startIter, leftIter, [] (X x) { std::cout << x << " "; });
-			std::cout << "and ";
-			std::for_each(rightIter, endIter, [] (X x) { std::cout << x << " "; });
-			std::cout << " with partition value " << estPartVal << std::endl;
-			*/
+
 			DoQuickSortImpl<X>(startIter, leftIter);
 			DoQuickSortImpl<X>(rightIter, endIter);
 		}
 	}
+
+    template <typename X>
+    static void DoQuickSortImpl(typename std::vector<X>::iterator &&startIter,
+                                typename std::vector<X>::iterator &&endIter)
+    {
+        DoQuickSortImpl<X>(startIter, endIter);
+    }
 
 	/// <summary>
 	/// Does the quicksort.

@@ -1,8 +1,16 @@
 // SortingTests.cpp : Defines the entry point for the console application.
 //
-
-#include "stdafx.h"
-#include <vld.h>
+#ifdef _MSC_VER
+#   include "stdafx.h"
+#   include <vld.h>
+#   define CLNAME "Visual Studio"
+#elif defined __GNUG__
+#   ifdef __clang__
+#       define CLNAME "Clang++"
+#   elif
+#       define CLNAME "GNU G++"
+#   endif
+#endif
 
 #include "gtest/gtest.h"
 #include "algorithms.h"
@@ -12,7 +20,7 @@
 #include <iostream>
 #include <algorithm>
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char *argv[])
 {
 	std::cout << "Running main() from SortingTests.cpp\n";
 
@@ -58,11 +66,7 @@ namespace sorting_tests
 		Algorithms::DoQuickSort(values);
 		auto endTime = system_clock::now();
 
-		EXPECT_TRUE( std::is_sorted(values.begin(), values.end()) );
-		/*for(auto idx1 = 0, idx2 = 1; idx2 < values.size(); ++idx1, ++idx2)
-		{
-			EXPECT_LE(values[idx1], values[idx2]) << "indexes are " << idx1 << " and " << idx2;
-		}*/
+        EXPECT_TRUE( std::is_sorted(values.begin(), values.end()) );
 
 		std::cout << ">>> Recursive quick sort for " << GetParam() << " numbers took " << duration_cast<milliseconds> (endTime - startTime).count() << " milliseconds." << std::endl;
 
@@ -74,15 +78,11 @@ namespace sorting_tests
 		Algorithms::DoMergeSort(values);
 		endTime = system_clock::now();
 
-		EXPECT_TRUE( std::is_sorted(values.begin(), values.end()) );
-		/*for(auto idx1 = 0, idx2 = 1; idx2 < values.size(); ++idx1, ++idx2)
-		{
-			EXPECT_LE(values[idx1], values[idx2]) << "indexes are " << idx1 << " and " << idx2;
-		}*/
+        EXPECT_TRUE( std::is_sorted(values.begin(), values.end()) );
 
 		std::cout << ">>> Iterative merge sort for " << GetParam() << " numbers took " << duration_cast<milliseconds> (endTime - startTime).count() << " milliseconds." << std::endl;
 
-		// Visual Studio STL implementation:
+        // Toolchain STL implementation for std::sort for benchmark:
 
 		GenerateValues(values);
 
@@ -92,7 +92,7 @@ namespace sorting_tests
 
 		EXPECT_TRUE( std::is_sorted(values.begin(), values.end()) );
 
-		std::cout << ">>> Visual Studio STL sort for " << GetParam() << " numbers took " << duration_cast<milliseconds> (endTime - startTime).count() << " milliseconds." << std::endl;
+        std::cout << ">>> " << CLNAME << " STL sort for " << GetParam() << " numbers took " << duration_cast<milliseconds> (endTime - startTime).count() << " milliseconds." << std::endl;
 	}
 
 	INSTANTIATE_TEST_CASE_P(QuickAndMergeSort_Test, 
