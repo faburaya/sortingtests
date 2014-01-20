@@ -5,11 +5,18 @@
 
 #pragma once
 
-#include "targetver.h"
-
-#include <stdio.h>
-#include <tchar.h>
-
-
+#ifdef _MSC_VER
+#	include "targetver.h"
+#	include <stdio.h>
+#	include <tchar.h>
 
 // TODO: reference additional headers your program requires here
+#   include <vld.h>
+#   define CLNAME "Visual Studio"
+#elif defined __GNUG__
+#   ifdef __clang__
+#       define CLNAME "Clang++"
+#   else
+#       define CLNAME "GNU G++"
+#   endif
+#endif

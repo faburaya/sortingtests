@@ -1,17 +1,6 @@
 // SortingTests.cpp : Defines the entry point for the console application.
 //
-#ifdef _MSC_VER
-#   include "stdafx.h"
-#   include <vld.h>
-#   define CLNAME "Visual Studio"
-#elif defined __GNUG__
-#   ifdef __clang__
-#       define CLNAME "Clang++"
-#   elif
-#       define CLNAME "GNU G++"
-#   endif
-#endif
-
+#include "stdafx.h"
 #include "gtest/gtest.h"
 #include "algorithms.h"
 #include <vector>
