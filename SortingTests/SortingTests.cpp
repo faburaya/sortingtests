@@ -53,7 +53,7 @@ namespace sorting_tests
 		Algorithms::DoQuickSort(values);
 		auto endTime = system_clock::now();
 
-        EXPECT_TRUE( std::is_sorted(values.begin(), values.end()) );
+                EXPECT_TRUE( std::is_sorted(values.begin(), values.end()) );
 
 		std::cout << ">>> Recursive quick sort for " << GetParam() << " numbers took " << duration_cast<milliseconds> (endTime - startTime).count() << " milliseconds." << std::endl;
 
@@ -65,7 +65,7 @@ namespace sorting_tests
 		Algorithms::DoMergeSort(values);
 		endTime = system_clock::now();
 
-        EXPECT_TRUE( std::is_sorted(values.begin(), values.end()) );
+                EXPECT_TRUE( std::is_sorted(values.begin(), values.end()) );
 
 		std::cout << ">>> Iterative merge sort for " << GetParam() << " numbers took " << duration_cast<milliseconds> (endTime - startTime).count() << " milliseconds." << std::endl;
 
@@ -83,6 +83,6 @@ namespace sorting_tests
 	}
 
 	INSTANTIATE_TEST_CASE_P(QuickAndMergeSort_Test, 
-							Sorting_TestCase, 
-							::testing::Values(1e5, 5e5, 25e5, 50e5));
+				Sorting_TestCase, 
+				::testing::Values(1e5, 5e5, 25e5, 50e5));
 }
